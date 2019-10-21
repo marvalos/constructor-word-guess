@@ -12,8 +12,8 @@ var Letter = function (letter, isLetterGuessed = false) {
     this.guess = function (guess) {
         if (guess === letter) {
             isLetterGuessed = true;
+            return true
         }
     }
 }
-
 module.exports = Letter;

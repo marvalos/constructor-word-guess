@@ -1,14 +1,10 @@
 var Word = require("./word")
 var inquirer = require("inquirer");
-
 var things = ['Rock', 'Paper', 'Scissor'];
 var thing = things[Math.floor(Math.random() * things.length)];
 var word = new Word(thing);
-//console.table(word.wordArr)
 var guessesLeft = 5;
 var roundNumber = 1;
-let lettersGuessed = [];
-
 function playGame() {
     if (0 < guessesLeft) {
         playRound();
@@ -16,7 +12,6 @@ function playGame() {
         endGame();
     }
 }
-
 function playRound() {
     console.log(word.showWord());
     inquirer.prompt([
@@ -27,25 +22,18 @@ function playRound() {
         }
     ])
         .then(function (answer) {
-            lettersGuessed.push(answer.getGuess);
-            lettersGuessed[lettersGuessed.length - 1].isCorrectLetter();
-            /*if (isLetterGuessed === false) {
+            var isLetterGuessed = word.isCorrectLetter(answer.guess);
+            if (isLetterGuessed === false) {
                 guessesLeft--;
             }
-            console.log(word.includes("_"));
-            endGame();*/
+            // if ((word.includes("_") === false)) {
+            //     endGame();
+            // }
+            roundNumber++;
+            playGame();
         })
-    if (isLetterGuessed === false) {
-        guessesLeft--;
-    }
-    if ((word.includes("_") === false)) {
-        endGame();
-    }
-    console.log(lettersGuessed);
-    roundNumber++;
-    playGame();
+    
 }
-
 function endGame() {
     // Prints the final score
     if (guessesLeft === 0) {
@@ -54,7 +42,6 @@ function endGame() {
     else {
         console.log("Nice job!")
     }
-
     inquirer
         .prompt({
             name: "again",
