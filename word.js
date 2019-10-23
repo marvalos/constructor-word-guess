@@ -10,7 +10,6 @@ var Word = function (word) {
     this.isCorrectLetter = function (letter) {
         var something;
         for (i = 0; i < this.wordArr.length; i++) {
-            console.log(this.wordArr[i]);
             something = this.wordArr[i].guess(letter);
         }
         return something;

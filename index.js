@@ -3,10 +3,14 @@ var inquirer = require("inquirer");
 var things = ['rock', 'paper', 'scissor'];
 var thing = things[Math.floor(Math.random() * things.length)];
 var word = new Word(thing);
-var guessesLeft = 5;
-var roundNumber = 1;
+var guessesLeft = 10;
+var n = word.showWord();
+console.log(typeof n);
 function playGame() {
-    if (0 < guessesLeft) {
+    if (n.includes("_") === false) {
+        endGame();
+    }
+    else if (0 < guessesLeft) {
         playRound();
     } else {
         endGame();
@@ -22,16 +26,12 @@ function playRound() {
         }
     ])
         .then(function (answer) {
-            console.log(answer.getGuess);
             var isLetterGuessed = word.isCorrectLetter(answer.getGuess);
-            // console.log(isLetterGuessed);
             if (isLetterGuessed === false) {
                 guessesLeft--;
             }
-            // if ((word.includes("_") === false)) {
-            //     endGame();
-            // }
-            roundNumber++;
+            console.log(`Guesses left: ${guessesLeft}`);
+            console.log(n.includes("_"));
             playGame();
         })
 }
@@ -50,9 +50,7 @@ function endGame() {
         })
         .then(function (answer) {
             if (answer.again === true) {
-                // Starts new match with the same players
-                roundNumber = 1;
-                guessesLeft = 5;
+                guessesLeft = 10;
                 lettersGuessed = [];
                 playGame();
             } else {

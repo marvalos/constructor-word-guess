@@ -1,12 +1,13 @@
 var Letter = function (letter, isLetterGuessed) {
+    let wrongLetters = [];
     this.letter = letter;
     this.isLetterGuessed = isLetterGuessed;
     this.characterReturner = function (letter) {
-        console.log("CharReturner is called");
         if (isLetterGuessed) {
             return letter;
         }
         else {
+            wrongLetters.push(letter);
             return "_";
         }
     }
