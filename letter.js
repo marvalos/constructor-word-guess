@@ -1,11 +1,9 @@
 var Letter = function (letter, isLetterGuessed) {
     this.letter = letter;
-    isLetterGuessed = false;
     this.isLetterGuessed = isLetterGuessed;
     this.characterReturner = function (letter) {
         console.log("CharReturner is called");
         if (isLetterGuessed) {
-            console.log(letter);
             return letter;
         }
         else {
@@ -13,10 +11,12 @@ var Letter = function (letter, isLetterGuessed) {
         }
     }
     this.guess = function (guess) {
-        if (guess === letter) {
-            isLetterGuessed = true;
-            console.log(isLetterGuessed);
-            return true
+        if (guess === letter) {   
+            this.isLetterGuessed = true; 
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

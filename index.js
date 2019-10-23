@@ -23,7 +23,9 @@ function playRound() {
     ])
         .then(function (answer) {
             console.log("This function is hit");
+            console.log(answer.getGuess);
             var isLetterGuessed = word.isCorrectLetter(answer.getGuess);
+            // console.log(isLetterGuessed);
             if (isLetterGuessed === false) {
                 guessesLeft--;
             }
@@ -31,7 +33,6 @@ function playRound() {
             //     endGame();
             // }
             roundNumber++;
-            answer.getGuess = "";
             playGame();
         })
     
