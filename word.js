@@ -8,7 +8,9 @@ var Word = function (word) {
     }
     this.isCorrectLetter = function (letter) {
         for (i = 0; i < this.wordArr.length; i++) {
-           this.wordArr[i].guess(letter);
+            console.log(this.wordArr[i].letter);
+            this.wordArr[i].guess(letter);
+            this.wordArr[i] = this.wordArr[i].characterReturner(letter);
         }
     }
 }

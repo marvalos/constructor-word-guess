@@ -1,6 +1,6 @@
 var Word = require("./word")
 var inquirer = require("inquirer");
-var things = ['Rock', 'Paper', 'Scissor'];
+var things = ['rock', 'paper', 'scissor'];
 var thing = things[Math.floor(Math.random() * things.length)];
 var word = new Word(thing);
 var guessesLeft = 5;
@@ -22,7 +22,8 @@ function playRound() {
         }
     ])
         .then(function (answer) {
-            var isLetterGuessed = word.isCorrectLetter(answer.guess);
+            console.log("This function is hit");
+            var isLetterGuessed = word.isCorrectLetter(answer.getGuess);
             if (isLetterGuessed === false) {
                 guessesLeft--;
             }
@@ -30,6 +31,7 @@ function playRound() {
             //     endGame();
             // }
             roundNumber++;
+            answer.getGuess = "";
             playGame();
         })
     
