@@ -22,7 +22,6 @@ function playRound() {
         }
     ])
         .then(function (answer) {
-            console.log("This function is hit");
             console.log(answer.getGuess);
             var isLetterGuessed = word.isCorrectLetter(answer.getGuess);
             // console.log(isLetterGuessed);
@@ -35,10 +34,8 @@ function playRound() {
             roundNumber++;
             playGame();
         })
-    
 }
 function endGame() {
-    // Prints the final score
     if (guessesLeft === 0) {
         console.log("Too bad, you didn't get it.")
     }
@@ -49,7 +46,7 @@ function endGame() {
         .prompt({
             name: "again",
             type: "confirm",
-            message: "Would you like to play another match?"
+            message: "Would you like to play another game?"
         })
         .then(function (answer) {
             if (answer.again === true) {
